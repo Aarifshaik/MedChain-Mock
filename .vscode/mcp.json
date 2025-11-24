@@ -1,0 +1,27 @@
+{
+	"servers": {
+		"Context7": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@upstash/context7-mcp@latest"
+			]
+		},
+		"tailwindcss": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"tailwindcss-mcp-server"
+			]
+		},
+		"shadcn": {
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"mcp"
+			]
+		}
+	},
+	"inputs": []
+}

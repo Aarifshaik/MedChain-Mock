@@ -1,0 +1,14 @@
+{
+    "chat.mcp.serverSampling": {
+        "dlt-medchain/.vscode/mcp.json: Context7": {
+            "allowedModels": [
+                "gemini-3-pro"
+            ]
+        },
+        "dlt-medchain/.vscode/mcp.json: shadcn": {
+            "allowedModels": [
+                "gemini-3-pro"
+            ]
+        }
+    }
+}
