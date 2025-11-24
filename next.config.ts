@@ -7,9 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // If deploying to a repository (not username.github.io), uncomment and set your repo name:
-  // basePath: '/your-repo-name',
-  // assetPrefix: '/your-repo-name',
+  basePath: '/MedChain-Mock',
+  assetPrefix: '/MedChain-Mock',
 };
 
 export default nextConfig;
