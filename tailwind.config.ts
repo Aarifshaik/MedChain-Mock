@@ -60,8 +60,14 @@ const config: Config = {
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "fade-in": "fade-in 0.5s ease-out",
+                "fade-in": "fade-in 0.4s ease-out",
+                "fade-in-up": "fade-in-up 0.5s ease-out",
                 "slide-in-right": "slide-in-right 0.3s ease-out",
+                "slide-in-left": "slide-in-left 0.3s ease-out",
+                "scale-in": "scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                "shimmer": "shimmer 2s linear infinite",
+                "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+                "bounce-subtle": "bounce-subtle 1s ease-in-out infinite",
             },
             keyframes: {
                 "accordion-down": {
@@ -73,12 +79,42 @@ const config: Config = {
                     to: { height: "0" },
                 },
                 "fade-in": {
-                    "0%": { opacity: "0", transform: "translateY(10px)" },
+                    "0%": { opacity: "0" },
+                    "100%": { opacity: "1" },
+                },
+                "fade-in-up": {
+                    "0%": { opacity: "0", transform: "translateY(20px)" },
                     "100%": { opacity: "1", transform: "translateY(0)" },
                 },
                 "slide-in-right": {
-                    "0%": { transform: "translateX(100%)" },
-                    "100%": { transform: "translateX(0)" },
+                    "0%": { transform: "translateX(100%)", opacity: "0" },
+                    "100%": { transform: "translateX(0)", opacity: "1" },
+                },
+                "slide-in-left": {
+                    "0%": { transform: "translateX(-100%)", opacity: "0" },
+                    "100%": { transform: "translateX(0)", opacity: "1" },
+                },
+                "scale-in": {
+                    "0%": { transform: "scale(0.9)", opacity: "0" },
+                    "100%": { transform: "scale(1)", opacity: "1" },
+                },
+                "shimmer": {
+                    "0%": { backgroundPosition: "-1000px 0" },
+                    "100%": { backgroundPosition: "1000px 0" },
+                },
+                "pulse-glow": {
+                    "0%, 100%": { 
+                        boxShadow: "0 0 20px rgba(20, 184, 166, 0.4)",
+                        opacity: "1"
+                    },
+                    "50%": { 
+                        boxShadow: "0 0 30px rgba(20, 184, 166, 0.6)",
+                        opacity: "0.9"
+                    },
+                },
+                "bounce-subtle": {
+                    "0%, 100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-5px)" },
                 },
             },
         }

@@ -25,7 +25,6 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { Loader2 } from 'lucide-react';
 import { Role } from '@/types';
 
 const formSchema = z.object({
@@ -78,10 +77,10 @@ export function LoginForm() {
     };
 
     return (
-        <Card className="w-full max-w-md glass-card border-white/10">
+        <Card className="w-full max-w-md">
             <CardHeader>
-                <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
-                <CardDescription className="text-center">
+                <CardTitle className="text-2xl font-bold text-center text-foreground">Welcome Back</CardTitle>
+                <CardDescription className="text-center text-muted-foreground">
                     Login to access your secure health records
                 </CardDescription>
             </CardHeader>
@@ -93,11 +92,15 @@ export function LoginForm() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel className="text-foreground">Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="name@example.com" {...field} className="bg-secondary/50 border-white/10" />
+                                        <Input 
+                                            placeholder="name@example.com" 
+                                            {...field} 
+                                            className="bg-input border-border text-foreground placeholder:text-muted-foreground"
+                                        />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-destructive" />
                                 </FormItem>
                             )}
                         />
@@ -107,10 +110,10 @@ export function LoginForm() {
                             name="role"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Role</FormLabel>
+                                    <FormLabel className="text-foreground">Role</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className="bg-secondary/50 border-white/10">
+                                            <SelectTrigger className="bg-input border-border text-foreground">
                                                 <SelectValue placeholder="Select a role" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -124,13 +127,16 @@ export function LoginForm() {
                                             <SelectItem value="INSURER">Insurer</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <FormMessage />
+                                    <FormMessage className="text-destructive" />
                                 </FormItem>
                             )}
                         />
 
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
-                            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                        <Button 
+                            type="submit" 
+                            className="w-full shadow-lg shadow-primary/25" 
+                            loading={isLoading}
+                        >
                             Login
                         </Button>
                     </form>
@@ -139,13 +145,28 @@ export function LoginForm() {
             <CardFooter className="flex flex-col gap-2">
                 <div className="text-xs text-muted-foreground text-center mb-2">Demo Credentials:</div>
                 <div className="flex gap-2 w-full">
-                    <Button variant="outline" size="sm" className="flex-1 text-xs" onClick={() => fillDemo('admin@medchain.com', 'ADMIN')}>
+                    <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 text-xs border-border hover:bg-accent hover:text-accent-foreground" 
+                        onClick={() => fillDemo('admin@medchain.com', 'ADMIN')}
+                    >
                         Admin
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1 text-xs" onClick={() => fillDemo('doctor@medchain.com', 'DOCTOR')}>
+                    <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 text-xs border-border hover:bg-accent hover:text-accent-foreground" 
+                        onClick={() => fillDemo('doctor@medchain.com', 'DOCTOR')}
+                    >
                         Doctor
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1 text-xs" onClick={() => fillDemo('patient@medchain.com', 'PATIENT')}>
+                    <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 text-xs border-border hover:bg-accent hover:text-accent-foreground" 
+                        onClick={() => fillDemo('patient@medchain.com', 'PATIENT')}
+                    >
                         Patient
                     </Button>
                 </div>

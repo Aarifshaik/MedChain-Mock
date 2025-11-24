@@ -25,7 +25,6 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { Loader2 } from 'lucide-react';
 import { Role } from '@/types';
 
 const formSchema = z.object({
@@ -60,10 +59,10 @@ export function RegisterForm() {
     }
 
     return (
-        <Card className="w-full max-w-md glass-card border-white/10">
+        <Card className="w-full max-w-md">
             <CardHeader>
-                <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
-                <CardDescription className="text-center">
+                <CardTitle className="text-2xl font-bold text-center text-foreground">Create Account</CardTitle>
+                <CardDescription className="text-center text-muted-foreground">
                     Join the secure healthcare network
                 </CardDescription>
             </CardHeader>
@@ -75,11 +74,15 @@ export function RegisterForm() {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Full Name</FormLabel>
+                                    <FormLabel className="text-foreground">Full Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="John Doe" {...field} className="bg-secondary/50 border-white/10" />
+                                        <Input 
+                                            placeholder="John Doe" 
+                                            {...field} 
+                                            className="bg-input border-border text-foreground placeholder:text-muted-foreground"
+                                        />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-destructive" />
                                 </FormItem>
                             )}
                         />
@@ -89,11 +92,15 @@ export function RegisterForm() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel className="text-foreground">Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="name@example.com" {...field} className="bg-secondary/50 border-white/10" />
+                                        <Input 
+                                            placeholder="name@example.com" 
+                                            {...field} 
+                                            className="bg-input border-border text-foreground placeholder:text-muted-foreground"
+                                        />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage className="text-destructive" />
                                 </FormItem>
                             )}
                         />
@@ -103,10 +110,10 @@ export function RegisterForm() {
                             name="role"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Role</FormLabel>
+                                    <FormLabel className="text-foreground">Role</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
-                                            <SelectTrigger className="bg-secondary/50 border-white/10">
+                                            <SelectTrigger className="bg-input border-border text-foreground">
                                                 <SelectValue placeholder="Select a role" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -119,13 +126,16 @@ export function RegisterForm() {
                                             <SelectItem value="INSURER">Insurer</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <FormMessage />
+                                    <FormMessage className="text-destructive" />
                                 </FormItem>
                             )}
                         />
 
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
-                            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                        <Button 
+                            type="submit" 
+                            className="w-full shadow-lg shadow-primary/25" 
+                            loading={isLoading}
+                        >
                             Register
                         </Button>
                     </form>

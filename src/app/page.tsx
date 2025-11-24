@@ -2,9 +2,8 @@
 
 import { Navbar } from '@/components/Navbar';
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ShieldCheck, Database, Activity, Lock } from 'lucide-react';
+import { ShieldCheck, Database, Lock } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -16,12 +15,7 @@ export default function Home() {
         {/* Background Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -z-10" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl space-y-6"
-        >
+        <div className="max-w-4xl space-y-6 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-white/10 text-sm text-primary mb-4">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -52,7 +46,7 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 max-w-6xl w-full px-4">
@@ -81,18 +75,17 @@ export default function Home() {
 }
 
 function FeatureCard({ icon, title, description, delay }: { icon: React.ReactNode, title: string, description: string, delay: number }) {
+  const delayClass = delay === 0.2 ? 'delay-200' : delay === 0.4 ? 'delay-[400ms]' : 'delay-[600ms]';
+  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      className="glass-card p-6 flex flex-col items-center text-center space-y-4"
+    <div
+      className={`glass-card p-6 flex flex-col items-center text-center space-y-4 animate-fade-in-up ${delayClass}`}
     >
       <div className="p-3 bg-white/5 rounded-xl border border-white/10">
         {icon}
       </div>
       <h3 className="text-xl font-semibold text-foreground">{title}</h3>
       <p className="text-muted-foreground">{description}</p>
-    </motion.div>
+    </div>
   );
 }

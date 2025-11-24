@@ -40,7 +40,7 @@ export default function DoctorDashboard() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Total Patients</CardTitle>
                             <Users className="h-4 w-4 text-muted-foreground" />
@@ -51,7 +51,7 @@ export default function DoctorDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Active Consents</CardTitle>
                             <FileText className="h-4 w-4 text-muted-foreground" />
@@ -62,7 +62,7 @@ export default function DoctorDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Status</CardTitle>
                             <Activity className="h-4 w-4 text-muted-foreground" />
@@ -75,9 +75,9 @@ export default function DoctorDashboard() {
                 </div>
 
                 <Tabs defaultValue="patients" className="space-y-4">
-                    <TabsList className="glass border-white/10">
-                        <TabsTrigger value="patients">My Patients</TabsTrigger>
-                        <TabsTrigger value="records">Patient Records</TabsTrigger>
+                    <TabsList className="glass">
+                        <TabsTrigger value="patients" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-200">My Patients</TabsTrigger>
+                        <TabsTrigger value="records" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-200">Patient Records</TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="patients" className="space-y-4">
@@ -87,7 +87,7 @@ export default function DoctorDashboard() {
                         </div>
 
                         {patients.length === 0 ? (
-                            <Card className="glass-card border-white/10">
+                            <Card className="glass-card">
                                 <CardContent className="pt-6">
                                     <div className="text-center py-8 text-muted-foreground">
                                         <Users className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -101,7 +101,7 @@ export default function DoctorDashboard() {
                                     const accessGranted = hasConsent(patient.id, currentUser.id);
 
                                     return (
-                                        <Card key={patient.id} className="glass-card border-white/10">
+                                        <Card key={patient.id} className="glass-card hover:scale-[1.02] transition-all duration-200">
                                             <CardHeader>
                                                 <div className="flex items-start justify-between">
                                                     <div>
@@ -124,7 +124,7 @@ export default function DoctorDashboard() {
                                                     <Button
                                                         size="sm"
                                                         variant="outline"
-                                                        className="w-full border-primary/30 text-primary"
+                                                        className="w-full border-primary/30 text-primary hover:bg-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                                         onClick={() => setSelectedPatient(patient.id)}
                                                     >
                                                         View Records
@@ -164,7 +164,7 @@ export default function DoctorDashboard() {
                         {selectedPatient ? (
                             <RecordList patientId={selectedPatient} viewerId={currentUser.id} />
                         ) : (
-                            <Card className="glass-card border-white/10">
+                            <Card className="glass-card">
                                 <CardContent className="pt-6">
                                     <div className="text-center py-8 text-muted-foreground">
                                         <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />

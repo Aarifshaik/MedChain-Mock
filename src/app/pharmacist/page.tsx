@@ -55,7 +55,7 @@ export default function PharmacistDashboard() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Total Patients</CardTitle>
                             <Users className="h-4 w-4 text-muted-foreground" />
@@ -66,7 +66,7 @@ export default function PharmacistDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Active Consents</CardTitle>
                             <Activity className="h-4 w-4 text-muted-foreground" />
@@ -77,7 +77,7 @@ export default function PharmacistDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Prescriptions</CardTitle>
                             <Pill className="h-4 w-4 text-muted-foreground" />
@@ -94,7 +94,7 @@ export default function PharmacistDashboard() {
                     <p className="text-sm text-muted-foreground mb-4">Review and fulfill patient prescriptions</p>
 
                     {prescriptions.length === 0 ? (
-                        <Card className="glass-card border-white/10">
+                        <Card className="glass-card">
                             <CardContent className="pt-6">
                                 <div className="text-center py-8 text-muted-foreground">
                                     <Pill className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -108,7 +108,7 @@ export default function PharmacistDashboard() {
                             {prescriptions.map((prescription) => {
                                 const patient = users.find((u) => u.id === prescription.patientId);
                                 return (
-                                    <Card key={prescription.id} className="glass-card border-white/10">
+                                    <Card key={prescription.id} className="glass-card hover:scale-[1.01] transition-all duration-200">
                                         <CardHeader>
                                             <div className="flex items-start justify-between">
                                                 <div className="flex items-center gap-3">
@@ -131,7 +131,7 @@ export default function PharmacistDashboard() {
                                             <p className="text-sm text-muted-foreground mb-3">{prescription.description}</p>
                                             <Button
                                                 size="sm"
-                                                className="bg-green-500 hover:bg-green-600"
+                                                className="bg-green-500 hover:bg-green-600 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                                 onClick={() => handleMarkFulfilled(prescription.id)}
                                             >
                                                 <CheckCircle2 className="w-3 h-3 mr-2" />

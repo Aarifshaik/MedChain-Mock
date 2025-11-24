@@ -34,7 +34,7 @@ export function EmergencyAccessManagement() {
             </div>
 
             {pendingRequests.length === 0 ? (
-                <Card className="glass-card border-white/10">
+                <Card className="glass-card">
                     <CardContent className="pt-6">
                         <div className="text-center py-8 text-muted-foreground">
                             <ShieldAlert className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -45,7 +45,7 @@ export function EmergencyAccessManagement() {
             ) : (
                 <div className="space-y-4">
                     {pendingRequests.map((request) => (
-                        <Card key={request.id} className="glass-card border-white/10 border-l-4 border-l-destructive">
+                        <Card key={request.id} className="glass-card border-l-4 border-l-destructive hover:scale-[1.01] transition-all duration-200">
                             <CardHeader>
                                 <div className="flex items-start justify-between">
                                     <div>
@@ -76,7 +76,7 @@ export function EmergencyAccessManagement() {
                                         <Button
                                             size="sm"
                                             variant="outline"
-                                            className="flex-1 border-green-500/30 text-green-400 hover:bg-green-500/10"
+                                            className="flex-1 border-green-500/30 text-green-400 hover:bg-green-500/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                             onClick={() => handleApprove(request.id, request.doctorName)}
                                         >
                                             <Check className="w-4 h-4 mr-2" />
@@ -85,7 +85,7 @@ export function EmergencyAccessManagement() {
                                         <Button
                                             size="sm"
                                             variant="outline"
-                                            className="flex-1 border-destructive/30 text-destructive hover:bg-destructive/10"
+                                            className="flex-1 border-destructive/30 text-destructive hover:bg-destructive/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                             onClick={() => handleReject(request.id, request.doctorName)}
                                         >
                                             <X className="w-4 h-4 mr-2" />
@@ -106,7 +106,7 @@ export function EmergencyAccessManagement() {
                         .filter((r) => r.status !== 'PENDING')
                         .slice(0, 5)
                         .map((request) => (
-                            <Card key={request.id} className="glass-card border-white/10">
+                            <Card key={request.id} className="glass-card hover:bg-card/90 transition-all duration-200">
                                 <CardContent className="pt-4">
                                     <div className="flex items-center justify-between text-sm">
                                         <div>

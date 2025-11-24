@@ -67,17 +67,17 @@ const SidebarContent = ({ role, pathname, currentUser, handleLogout }: SidebarCo
     return (
         <div className="flex flex-col h-full">
             <div className="p-6 border-b border-white/10">
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
                     <div className="p-2 bg-primary/20 rounded-lg">
                         <Activity className="w-6 h-6 text-primary" />
                     </div>
-                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">
-                        MedChain
+                    <span className="text-xl font-bold text-foreground">
+                        <span className="text-gradient">MedChain</span>
                     </span>
                 </Link>
             </div>
 
-            <div className="flex-1 py-6 px-4 space-y-1">
+            <div className="flex-1 py-6 px-4 space-y-2">
                 {currentLinks.map((link) => {
                     const Icon = link.icon;
                     const isActive = pathname === link.href;
@@ -85,7 +85,11 @@ const SidebarContent = ({ role, pathname, currentUser, handleLogout }: SidebarCo
                         <Link key={link.href} href={link.href}>
                             <Button
                                 variant={isActive ? 'secondary' : 'ghost'}
-                                className={`w-full justify-start gap-3 ${isActive ? 'bg-primary/10 text-primary' : 'text-muted-foreground'}`}
+                                className={`w-full justify-start gap-3 transition-all duration-200 ${
+                                    isActive 
+                                        ? 'bg-primary/10 text-primary hover:bg-primary/15' 
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
+                                }`}
                             >
                                 <Icon className="w-5 h-5" />
                                 {link.label}
@@ -98,16 +102,20 @@ const SidebarContent = ({ role, pathname, currentUser, handleLogout }: SidebarCo
             <div className="p-4 border-t border-white/10">
                 <div className="flex items-center gap-3 mb-4 px-2">
                     <Avatar>
-                        <AvatarFallback className="bg-primary/20 text-primary">
+                        <AvatarFallback className="bg-primary/20 text-primary font-semibold">
                             {currentUser?.name?.charAt(0) || 'U'}
                         </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 overflow-hidden">
-                        <p className="text-sm font-medium truncate">{currentUser?.name}</p>
+                        <p className="text-sm font-medium truncate text-foreground">{currentUser?.name}</p>
                         <p className="text-xs text-muted-foreground truncate">{currentUser?.role}</p>
                     </div>
                 </div>
-                <Button variant="destructive" className="w-full justify-start gap-3" onClick={handleLogout}>
+                <Button 
+                    variant="destructive" 
+                    className="w-full justify-start gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" 
+                    onClick={handleLogout}
+                >
                     <LogOut className="w-4 h-4" />
                     Logout
                 </Button>
@@ -130,20 +138,22 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
     return (
         <div className="min-h-screen flex bg-background">
             {/* Desktop Sidebar */}
-            <aside className="hidden md:block w-64 border-r border-white/10 bg-card/50 backdrop-blur-xl fixed h-full z-30">
+            <aside className="hidden md:block w-64 border-r border-white/10 glass fixed h-full z-30">
                 <SidebarContent role={role} pathname={pathname} currentUser={currentUser} handleLogout={handleLogout} />
             </aside>
 
             {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 w-full z-40 border-b border-white/10 bg-background/80 backdrop-blur-md p-4 flex items-center justify-between">
-                <span className="font-bold text-lg">MedChain</span>
+            <div className="md:hidden fixed top-0 w-full z-40 border-b border-white/10 glass p-4 flex items-center justify-between">
+                <span className="font-bold text-lg text-foreground">
+                    <span className="text-gradient">MedChain</span>
+                </span>
                 <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon">
+                        <Button variant="ghost" size="icon" className="hover:bg-white/5">
                             <Menu className="w-6 h-6" />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="left" className="p-0 w-64 border-r border-white/10 bg-card">
+                    <SheetContent side="left" className="p-0 w-64 border-r border-white/10 glass">
                         <SidebarContent role={role} pathname={pathname} currentUser={currentUser} handleLogout={handleLogout} />
                     </SheetContent>
                 </Sheet>

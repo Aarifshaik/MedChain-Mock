@@ -26,7 +26,7 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
                             <Users className="h-4 w-4 text-muted-foreground" />
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Pending Approvals</CardTitle>
                             <UserPlus className="h-4 w-4 text-muted-foreground" />
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Emergency Access</CardTitle>
                             <ShieldAlert className="h-4 w-4 text-muted-foreground" />
@@ -61,9 +61,9 @@ export default function AdminDashboard() {
                 </div>
 
                 <Tabs defaultValue="users" className="space-y-4">
-                    <TabsList className="glass border-white/10">
-                        <TabsTrigger value="users">User Management</TabsTrigger>
-                        <TabsTrigger value="emergency">
+                    <TabsList className="glass">
+                        <TabsTrigger value="users" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-200">User Management</TabsTrigger>
+                        <TabsTrigger value="emergency" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-200">
                             Emergency Access
                             {emergencyCount > 0 && (
                                 <span className="ml-2 bg-destructive text-destructive-foreground rounded-full px-2 py-0.5 text-xs">

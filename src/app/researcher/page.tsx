@@ -60,7 +60,7 @@ export default function ResearcherDashboard() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Consented Patients</CardTitle>
                             <Users className="h-4 w-4 text-muted-foreground" />
@@ -71,7 +71,7 @@ export default function ResearcherDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Data Points</CardTitle>
                             <Database className="h-4 w-4 text-muted-foreground" />
@@ -82,7 +82,7 @@ export default function ResearcherDashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="glass-card border-white/10">
+                    <Card className="glass-card hover:scale-[1.02] transition-all duration-200">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Status</CardTitle>
                             <Activity className="h-4 w-4 text-muted-foreground" />
@@ -100,7 +100,7 @@ export default function ResearcherDashboard() {
 
                     <div className="grid gap-4 md:grid-cols-2 mb-6">
                         {Object.entries(recordTypeStats).map(([type, count]) => (
-                            <Card key={type} className="glass-card border-white/10">
+                            <Card key={type} className="glass-card hover:scale-[1.02] transition-all duration-200">
                                 <CardHeader className="pb-3">
                                     <CardTitle className="text-sm flex items-center justify-between">
                                         {type.replace('_', ' ')}
@@ -117,7 +117,7 @@ export default function ResearcherDashboard() {
                     <p className="text-sm text-muted-foreground mb-4">Patient identities are protected</p>
 
                     {anonymizedData.length === 0 ? (
-                        <Card className="glass-card border-white/10">
+                        <Card className="glass-card">
                             <CardContent className="pt-6">
                                 <div className="text-center py-8 text-muted-foreground">
                                     <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
@@ -129,7 +129,7 @@ export default function ResearcherDashboard() {
                     ) : (
                         <div className="space-y-4">
                             {anonymizedData.map((data) => (
-                                <Card key={data.id} className="glass-card border-white/10">
+                                <Card key={data.id} className="glass-card hover:scale-[1.01] transition-all duration-200">
                                     <CardHeader>
                                         <div className="flex items-start justify-between">
                                             <div>

@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { useConsentStore } from '@/stores/consentStore';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { LoadingOverlay } from '@/components/ui/loading-overlay';
 import {
     Form,
     FormControl,
@@ -24,7 +25,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
-import { ShieldAlert, Loader2 } from 'lucide-react';
+import { ShieldAlert } from 'lucide-react';
 
 const formSchema = z.object({
     reason: z.string().min(20, 'Reason must be at least 20 characters'),
@@ -80,7 +81,9 @@ export function EmergencyAccessDialog({
                     Request Emergency Access
                 </Button>
             </DialogTrigger>
-            <DialogContent className="glass-card border-white/10 max-w-md border-l-4 border-l-destructive">
+            <DialogContent className="glass-card border-white/10 max-w-md border-l-4 border-l-destructive relative">
+                <LoadingOverlay isLoading={isLoading} message="Submitting emergency request..." />
+                
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2 text-destructive">
                         <ShieldAlert className="w-5 h-5" />
@@ -121,19 +124,10 @@ export function EmergencyAccessDialog({
                         <Button
                             type="submit"
                             className="w-full bg-destructive hover:bg-destructive/90"
-                            disabled={isLoading}
+                            loading={isLoading}
                         >
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Submitting...
-                                </>
-                            ) : (
-                                <>
-                                    <ShieldAlert className="mr-2 h-4 w-4" />
-                                    Submit Emergency Request
-                                </>
-                            )}
+                            <ShieldAlert className="mr-2 h-4 w-4" />
+                            Submit Emergency Request
                         </Button>
                     </form>
                 </Form>

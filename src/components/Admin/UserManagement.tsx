@@ -27,7 +27,7 @@ export function UserManagement() {
     return (
         <div className="space-y-6">
             {/* Pending Approvals */}
-            <Card className="glass-card border-white/10">
+            <Card className="glass-card">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         Pending Approvals
@@ -47,7 +47,7 @@ export function UserManagement() {
                     ) : (
                         <Table>
                             <TableHeader>
-                                <TableRow className="border-white/10 hover:bg-white/5">
+                                <TableRow className="border-white/10 hover:bg-white/5 transition-colors duration-200">
                                     <TableHead>Name</TableHead>
                                     <TableHead>Email</TableHead>
                                     <TableHead>Role</TableHead>
@@ -56,7 +56,7 @@ export function UserManagement() {
                             </TableHeader>
                             <TableBody>
                                 {pendingUsers.map((user) => (
-                                    <TableRow key={user.id} className="border-white/10 hover:bg-white/5">
+                                    <TableRow key={user.id} className="border-white/10 hover:bg-white/5 transition-colors duration-200">
                                         <TableCell className="font-medium">{user.name}</TableCell>
                                         <TableCell>{user.email}</TableCell>
                                         <TableCell>
@@ -65,10 +65,10 @@ export function UserManagement() {
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="text-right space-x-2">
-                                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-900/20" onClick={() => handleReject(user.id, user.name)}>
+                                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-red-400 hover:text-red-300 hover:bg-red-900/20 hover:scale-110 active:scale-95 transition-all duration-200" onClick={() => handleReject(user.id, user.name)}>
                                                 <X className="h-4 w-4" />
                                             </Button>
-                                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-green-400 hover:text-green-300 hover:bg-green-900/20" onClick={() => handleApprove(user.id, user.name)}>
+                                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0 text-green-400 hover:text-green-300 hover:bg-green-900/20 hover:scale-110 active:scale-95 transition-all duration-200" onClick={() => handleApprove(user.id, user.name)}>
                                                 <Check className="h-4 w-4" />
                                             </Button>
                                         </TableCell>
@@ -81,7 +81,7 @@ export function UserManagement() {
             </Card>
 
             {/* Active Users */}
-            <Card className="glass-card border-white/10">
+            <Card className="glass-card">
                 <CardHeader>
                     <CardTitle>Active Users</CardTitle>
                     <CardDescription>System users with active access</CardDescription>
@@ -89,7 +89,7 @@ export function UserManagement() {
                 <CardContent>
                     <Table>
                         <TableHeader>
-                            <TableRow className="border-white/10 hover:bg-white/5">
+                            <TableRow className="border-white/10 hover:bg-white/5 transition-colors duration-200">
                                 <TableHead>Name</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead>Role</TableHead>
@@ -98,7 +98,7 @@ export function UserManagement() {
                         </TableHeader>
                         <TableBody>
                             {activeUsers.map((user) => (
-                                <TableRow key={user.id} className="border-white/10 hover:bg-white/5">
+                                <TableRow key={user.id} className="border-white/10 hover:bg-white/5 transition-colors duration-200">
                                     <TableCell className="font-medium">{user.name}</TableCell>
                                     <TableCell>{user.email}</TableCell>
                                     <TableCell>

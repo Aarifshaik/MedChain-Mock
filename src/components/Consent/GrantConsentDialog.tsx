@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { useConsentStore } from '@/stores/consentStore';
 import { useUserStore } from '@/stores/userStore';
 import { Button } from '@/components/ui/button';
+import { LoadingOverlay } from '@/components/ui/loading-overlay';
 import {
     Form,
     FormControl,
@@ -32,7 +33,7 @@ import {
 } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
-import { Shield, Loader2 } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { RecordType } from '@/types';
 
 const formSchema = z.object({
@@ -107,7 +108,9 @@ export function GrantConsentDialog({ patientId }: GrantConsentDialogProps) {
                     Grant Consent
                 </Button>
             </DialogTrigger>
-            <DialogContent className="glass-card border-white/10 max-w-md">
+            <DialogContent className="glass-card border-white/10 max-w-md relative">
+                <LoadingOverlay isLoading={isLoading} message="Granting consent..." />
+                
                 <DialogHeader>
                     <DialogTitle>Grant Access Consent</DialogTitle>
                     <DialogDescription>
@@ -194,15 +197,12 @@ export function GrantConsentDialog({ patientId }: GrantConsentDialogProps) {
                             )}
                         />
 
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Granting...
-                                </>
-                            ) : (
-                                'Grant Consent'
-                            )}
+                        <Button 
+                            type="submit" 
+                            className="w-full bg-primary hover:bg-primary/90" 
+                            loading={isLoading}
+                        >
+                            Grant Consent
                         </Button>
                     </form>
                 </Form>

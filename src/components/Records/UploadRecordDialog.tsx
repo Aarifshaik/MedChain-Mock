@@ -9,6 +9,7 @@ import { useUserStore } from '@/stores/userStore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { LoadingOverlay } from '@/components/ui/loading-overlay';
 import {
     Form,
     FormControl,
@@ -33,7 +34,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
-import { Upload, Loader2 } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { RecordType } from '@/types';
 
 const formSchema = z.object({
@@ -129,7 +130,9 @@ export function UploadRecordDialog({ patientId, trigger }: UploadRecordDialogPro
                     </Button>
                 )}
             </DialogTrigger>
-            <DialogContent className="glass-card border-white/10 max-w-md">
+            <DialogContent className="glass-card border-white/10 max-w-md relative">
+                <LoadingOverlay isLoading={isLoading} message="Encrypting and uploading..." />
+                
                 <DialogHeader>
                     <DialogTitle>Upload Medical Record</DialogTitle>
                     <DialogDescription>
@@ -215,15 +218,12 @@ export function UploadRecordDialog({ patientId, trigger }: UploadRecordDialogPro
                             )}
                         </div>
 
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Encrypting...
-                                </>
-                            ) : (
-                                'Upload Record'
-                            )}
+                        <Button 
+                            type="submit" 
+                            className="w-full bg-primary hover:bg-primary/90" 
+                            loading={isLoading}
+                        >
+                            Upload Record
                         </Button>
                     </form>
                 </Form>
